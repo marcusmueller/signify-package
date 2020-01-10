@@ -1,5 +1,5 @@
 Name:     signify
-Version:  26
+Version:  27
 Release:  1%{?dist}
 Summary:  Sign and encrypt files
 
@@ -15,13 +15,20 @@ BuildRequires:  make
 Sign and verify signatures on files, as used by the OpenBSD release maintainers.
 
 %prep
-%autosetup -n %{name}-%{version}
 
 %build
-%make_build CFLAGS=-g
+%set_build_flags
+%make_build
+
+# enabling checks as soon as upstream releases the next release (after v27)
+# which should include regression testing
+# %check
+# %{__make} check
+
 
 %install
-%make_install PREFIX=/usr
+%make_install PREFIX=%{_prefix}
+
 
 %files
 %doc CHANGELOG.md README.md
@@ -29,5 +36,10 @@ Sign and verify signatures on files, as used by the OpenBSD release maintainers.
 %{_mandir}/man1/signify.*
 
 %changelog
+* Fri Jan 10 2020 Marcus Müller <marcus@hostalia.de> - 27-1
+- updated to release v27
+- prepared `%check` for as soon as regression tests are released
+- fixed `%set_build_flags` (thanks Antonio <anto.trande@gmail.com>)
+- proper _prefix (thanks Vít Ondruch <vondruch@redhat.com>)
 * Fri Nov 01 2019 Marcus Müller <marcus@hostalia.de> - 26-1
 - Initial import
