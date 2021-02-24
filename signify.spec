@@ -1,6 +1,6 @@
 Name:     signify
 Version:  30
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Sign and encrypt files
 
 License:  ISC
@@ -24,10 +24,8 @@ rm -rf libwaive
 export LD=ld
 %make_build
 
-# enabling checks as soon as upstream releases the next release (after v27)
-# which should include regression testing
-# %check
-# %{__make} check
+%check
+%{__make} check
 
 
 %install
@@ -41,6 +39,9 @@ export LD=ld
 %{_mandir}/man1/signify.*
 
 %changelog
+* Wed Feb 24 2021 Marcus Müller <marcus@hostalia.de> - 30-2
+- enable tests
+
 * Wed Feb 24 2021 Marcus Müller <marcus@hostalia.de> - 30-1
 - Bump upstream version
 - Include the upstreamed license file
