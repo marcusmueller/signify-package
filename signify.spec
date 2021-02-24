@@ -1,5 +1,5 @@
 Name:     signify
-Version:  27
+Version:  30
 Release:  1%{?dist}
 Summary:  Sign and encrypt files
 
@@ -21,6 +21,7 @@ rm -rf libwaive
 
 %build
 %set_build_flags
+export LD=ld
 %make_build
 
 # enabling checks as soon as upstream releases the next release (after v27)
@@ -34,17 +35,26 @@ rm -rf libwaive
 
 
 %files
+%license COPYING
 %doc CHANGELOG.md README.md
 %{_bindir}/signify
 %{_mandir}/man1/signify.*
 
 %changelog
+* Wed Feb 24 2021 Marcus Müller <marcus@hostalia.de> - 30-1
+- Bump upstream version
+- Include the upstreamed license file
+- Add newlines to changelog
+- set LD explicitly (thanks sagitter)
+
 * Sat Jan 11 2020 Marcus Müller <marcus@hostalia.de> - 27-2
 - removed bundled library libwaive from source
+
 * Fri Jan 10 2020 Marcus Müller <marcus@hostalia.de> - 27-1
 - updated to release v27
 - prepared `%check` for as soon as regression tests are released
 - fixed `%set_build_flags` (thanks Antonio <anto.trande@gmail.com>)
 - proper _prefix (thanks Vít Ondruch <vondruch@redhat.com>)
+
 * Fri Nov 01 2019 Marcus Müller <marcus@hostalia.de> - 26-1
 - Initial import
