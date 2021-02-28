@@ -1,9 +1,9 @@
 Name:     signify
 Version:  30
-Release:  2%{?dist}
+Release:  3%{?dist}
 Summary:  Sign and encrypt files
 
-License:  ISC
+License:  ISC and MIT and BSD
 URL:      https://github.com/aperezdc/%{name}
 Source0:  %{url}/releases/download/v%{version}/%{name}-%{version}.tar.xz
 
@@ -39,6 +39,10 @@ export LD=ld
 %{_mandir}/man1/signify.*
 
 %changelog
+* Sun Feb 28 2021 Marcus Müller <marcus@hostalia.de> - 30-3
+- Fixed License tag
+- rid of unescaped macros in %%changelog
+
 * Wed Feb 24 2021 Marcus Müller <marcus@hostalia.de> - 30-2
 - enable tests
 
@@ -53,8 +57,8 @@ export LD=ld
 
 * Fri Jan 10 2020 Marcus Müller <marcus@hostalia.de> - 27-1
 - updated to release v27
-- prepared `%check` for as soon as regression tests are released
-- fixed `%set_build_flags` (thanks Antonio <anto.trande@gmail.com>)
+- prepared `%%check` for as soon as regression tests are released
+- fixed `%%set_build_flags` (thanks Antonio <anto.trande@gmail.com>)
 - proper _prefix (thanks Vít Ondruch <vondruch@redhat.com>)
 
 * Fri Nov 01 2019 Marcus Müller <marcus@hostalia.de> - 26-1
